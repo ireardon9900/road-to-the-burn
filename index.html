@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Road to the Burn</title>
+<style>
+  :root{
+    --ink:#fdfaff; --dim:#c3b6d6; --faint:#9d8fb4;
+    --line:rgba(255,255,255,.16); --card:rgba(255,255,255,.06);
+    --dylan:#ff6fae; --ian:#41e3c8;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 560px at 12% -12%, #351461 0%, transparent 62%),
+      radial-gradient(880px 480px at 92% -4%, #0f4655 0%, transparent 58%),
+      linear-gradient(180deg,#170b28,#0a0612 62%);
+    color:var(--ink);
+    font:17px/1.62 ui-sans-serif,-apple-system,"Segoe UI",Inter,system-ui,sans-serif;
+    min-height:100vh; padding:30px 22px 72px;
+  }
+  .wrap{max-width:940px;margin:0 auto}
+
+  h1{font-size:38px;margin:0;letter-spacing:.2em;font-weight:800;
+     background:linear-gradient(92deg,#ff6fae,#ffc061 46%,#41e3c8);
+     -webkit-background-clip:text;background-clip:text;color:transparent}
+  .sub{color:var(--dim);font-size:15px;letter-spacing:.16em;text-transform:uppercase;margin-top:8px}
+  .stake{font-size:17px;margin:18px 0 26px;max-width:720px;
+         border-left:3px solid var(--dylan);padding:2px 0 2px 15px;color:var(--ink)}
+
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:18px;
+         padding:22px 24px;margin-bottom:20px}
+  .panel h2{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);
+            margin:0 0 18px;font-weight:700}
+
+  /* matchup */
+  .vs{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:center}
+  .fighter{text-align:center}
+  .fighter svg{width:120px;height:120px;display:block;margin:0 auto 12px}
+  .fname{font-size:22px;font-weight:800;letter-spacing:.01em}
+  .fhandle{color:var(--dim);font-size:14px;margin-top:2px}
+  .fstat{margin-top:12px;font-size:14px;color:var(--dim)}
+  .fstat b{color:var(--ink);font-size:20px;font-variant-numeric:tabular-nums;display:block}
+  .vsmark{font-size:26px;font-weight:800;color:var(--faint);letter-spacing:.1em}
+
+  /* standings */
+  .row{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;
+       border:1px solid var(--line);border-radius:14px;padding:16px 18px;
+       position:relative;overflow:hidden;margin-bottom:12px}
+  .row::before{content:"";position:absolute;inset:0;opacity:.13;background:var(--c)}
+  .who{display:flex;align-items:center;gap:13px;position:relative}
+  .who svg{width:46px;height:46px;flex:none}
+  .nm{font-weight:800;font-size:19px}
+  .hd{color:var(--dim);font-size:14px}
+  .nums{display:flex;gap:26px;text-align:right;position:relative}
+  .num b{display:block;font-size:27px;font-variant-numeric:tabular-nums;line-height:1.12}
+  .num span{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)}
+  .lead{font-size:15px;color:var(--dim);text-align:center;margin-top:6px}
+  .lead b{color:var(--ink)}
+
+  svg.course{display:block;width:100%;height:auto}
+  .stagelbl{font:700 11px ui-sans-serif,sans-serif;letter-spacing:.14em;fill:#b3a5c8}
+  .stagept{font:600 10px ui-sans-serif,sans-serif;letter-spacing:.1em;fill:#8e80a6}
+
+  table{width:100%;border-collapse:collapse;font-size:16px}
+  th{text-align:left;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);
+     font-weight:700;padding:0 12px 11px 0;border-bottom:1px solid var(--line)}
+  td{padding:12px 12px 12px 0;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  td.n{text-align:right;font-variant-numeric:tabular-nums;font-weight:800;white-space:nowrap}
+  .zero{color:var(--faint);font-weight:600}
+  .muted{color:var(--dim)}
+  .empty{color:var(--dim);font-size:16px;padding:4px 0}
+  a{color:#93dcff}
+
+  .idea{border:1px solid var(--line);border-radius:15px;padding:18px 20px;margin-bottom:14px;
+        background:rgba(255,255,255,.028)}
+  .ihead{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:11px}
+  .act{font-size:12px;letter-spacing:.15em;text-transform:uppercase;font-weight:800;
+       padding:4px 11px;border-radius:99px}
+  .act-reply{background:rgba(65,227,200,.18);color:#7ff0dc}
+  .act-quote{background:rgba(255,192,97,.18);color:#ffd79a}
+  .act-post{background:rgba(255,111,174,.18);color:#ffa5cb}
+  .clock{margin-left:auto;font-size:12px;font-weight:800;letter-spacing:.09em;
+         text-transform:uppercase;padding:5px 12px;border-radius:9px;border:1.5px solid}
+  .clock.live{color:#ffd79a;border-color:rgba(255,215,154,.5);background:rgba(255,192,97,.10)}
+  .clock.gone{color:#ff8fbd;border-color:rgba(255,143,189,.45);background:rgba(255,111,174,.10)}
+  .isrc{font-size:17px;font-weight:700}
+  .iquote{color:var(--dim);font-size:15px;margin:0 0 14px;padding-left:14px;
+          border-left:2px solid rgba(255,255,255,.2);font-style:italic}
+  .ipick{font-size:13px;color:var(--faint);margin:0 0 12px}
+  .ilab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--faint);
+        font-weight:700;margin-bottom:7px}
+  .idea ul{margin:0 0 16px;padding-left:20px;font-size:16px}
+  .idea ul li{margin-bottom:6px}
+  .open.dead{background:rgba(255,255,255,.13);color:var(--faint);cursor:default}
+  .open{display:inline-block;background:#fff;color:#160c26;font-weight:800;font-size:15px;
+        padding:10px 20px;border-radius:99px;text-decoration:none;letter-spacing:.01em}
+  .open:hover{background:#e9ddf7}
+  ul.rules{margin:0;padding-left:22px}
+  ul.rules li{margin-bottom:9px}
+  ul.rules li:last-child{margin-bottom:0}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:780px){
+    .grid2{grid-template-columns:1fr}
+    .vs{grid-template-columns:1fr;gap:8px}
+    .nums{gap:18px}.num b{font-size:22px}
+    h1{font-size:29px}
+  }
+  footer{color:var(--faint);font-size:13px;text-align:center;margin-top:28px;line-height:1.9}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+
+<script>
+/* =========================================================================
+   Everything on this board comes from data.json, sitting next to this file.
+   To update the board, edit data.json. You should never need to touch this file.
+   ========================================================================= */
+const DATA_URL = "data.json";
+let DATA = null;
+
+const DAY = 86400000;
+const iso = d => d.toISOString().slice(0,10);
+const pretty = s => new Date(s+"T00:00:00")
+  .toLocaleDateString("en-US",{month:"short",day:"numeric"});
+
+const FACES = {
+  dylan: (c,id) => `
+    <svg viewBox="0 0 100 100" aria-label="Dylan">
+      <defs><clipPath id="cl${id}"><circle cx="50" cy="50" r="47"/></clipPath></defs>
+      <circle cx="50" cy="50" r="47" fill="#1d0f2e"/>
+      <g clip-path="url(#cl${id})">
+        <rect x="0" y="0" width="100" height="100" fill="#20402c"/>
+        <path d="M0 74 Q26 60 52 76 T100 68 L100 100 L0 100Z" fill="#12261a"/>
+        <path d="M32 96 Q50 74 68 96 L68 100 L32 100Z" fill="#141018"/>
+        <circle cx="50" cy="60" r="20" fill="#e8b48c"/>
+        <path d="M37 68 Q50 82 63 68 Q50 73 37 68Z" fill="#fff"/>
+        <path d="M37 68 Q50 82 63 68" fill="none" stroke="#8a4a4a" stroke-width="1.3"/>
+        <g fill="${c}" opacity=".92">
+          <circle cx="42" cy="55" r="7.5"/><circle cx="59" cy="55" r="7.5"/>
+        </g>
+        <path d="M49.5 55 h2" stroke="#d8a86a" stroke-width="2"/>
+        <path d="M14 44 Q50 24 86 44 Q76 48 50 48 Q24 48 14 44Z" fill="#14101c"/>
+        <ellipse cx="50" cy="38" rx="21" ry="15" fill="#191325"/>
+      </g>
+      <circle cx="50" cy="50" r="46" fill="none" stroke="${c}" stroke-width="3"/>
+    </svg>`,
+  ian: (c,id) => `
+    <svg viewBox="0 0 100 100" aria-label="Ian">
+      <defs><clipPath id="cl${id}"><circle cx="50" cy="50" r="47"/></clipPath></defs>
+      <circle cx="50" cy="50" r="47" fill="#0f2620"/>
+      <g clip-path="url(#cl${id})">
+        <rect x="0" y="0" width="100" height="100" fill="#1c3a2e"/>
+        <circle cx="26" cy="30" r="13" fill="#24503c" opacity=".8"/>
+        <circle cx="76" cy="24" r="16" fill="#24503c" opacity=".7"/>
+        <path d="M30 100 L42 72 L50 80 L58 72 L70 100Z" fill="#2b3350"/>
+        <path d="M44 70 h12 v12 l-6 6 l-6 -6Z" fill="#eef2f8"/>
+        <rect x="47.5" y="72" width="5" height="16" rx="2" fill="#3d4a6b" transform="rotate(4 50 80)"/>
+        <circle cx="50" cy="52" r="19" fill="#f0c9a8"/>
+        <path d="M50 64 q7 0 10 -4 q-4 6 -10 6 q-6 0 -10 -6 q3 4 10 4Z" fill="#7a4b3a"/>
+        <g fill="#3a2a22"><circle cx="43" cy="49" r="2.3"/><circle cx="57" cy="49" r="2.3"/></g>
+        <path d="M31 46 q3 -22 19 -22 q16 0 19 22 q-4 -12 -19 -12 q-15 0 -19 12Z" fill="#7d5a3c"/>
+        <circle cx="36" cy="31" r="5" fill="#7d5a3c"/><circle cx="47" cy="26" r="6" fill="#7d5a3c"/>
+        <circle cx="58" cy="28" r="5.5" fill="#7d5a3c"/><circle cx="65" cy="35" r="4.5" fill="#7d5a3c"/>
+      </g>
+      <circle cx="50" cy="50" r="46" fill="none" stroke="${c}" stroke-width="3"/>
+    </svg>`
+};
+
+function tally(){
+  const R = DATA.rubric, S = DATA.results, by = {};
+  DATA.players.forEach(p => by[p.id] = {...p, shipping:0, likePts:0, likes:0, days:new Set()});
+  DATA.log.forEach(e=>{
+    const P = by[e.player]; if(!P) return;
+    const v = R[e.type] ?? 0;
+    P.shipping += v;
+    if(v > 0) P.days.add(e.date);
+    const likes = e.likes || 0;
+    P.likes += likes;
+    // like points are capped per post, so no single banger decides the season
+    P.likePts += Math.min(S.likeCapPerPost, Math.floor(likes / S.likesPerPoint));
+  });
+  Object.values(by).forEach(P=>{
+    P.netFollowers = P.followersNow - P.followersStart;
+    P.followerPts  = Math.max(0, P.netFollowers) * S.perFollower;
+    P.points       = P.shipping + P.followerPts + P.likePts;
+  });
+  return by;
+}
+
+function streakOf(P, start, idx, live){
+  if(!live) return "-";
+  let run = 0;
+  for(let i = idx; i >= 0; i--){
+    if(P.days.has(iso(new Date(start.getTime() + i*DAY)))) run++; else break;
+  }
+  return run;
+}
+
+function course(by){
+  const top = DATA.checkpoints[DATA.checkpoints.length-1].at;
+  const max = Math.max(top, ...Object.values(by).map(p=>p.points)) || 1;
+  const d = "M 42 186 C 168 186, 176 74, 300 74 S 444 196, 568 192 S 716 62, 826 80 S 944 148, 960 130";
+  return {
+    d,
+    marks: DATA.checkpoints.map(s=>({...s, t: Math.min(1, s.at/max)})),
+    tokens: Object.values(by).map(p=>({
+      id:p.id, name:p.name, color:p.color, face:p.face, t: Math.min(1, p.points/max)
+    }))
+  };
+}
+
+function paintCourse(spec){
+  const host = document.getElementById("course");
+  const path = host.querySelector("#track");
+  const L = path.getTotalLength();
+  const marks = host.querySelector("#marks");
+  const toks  = host.querySelector("#tokens");
+  spec.marks.forEach(s=>{
+    const p = path.getPointAtLength(s.t*L);
+    marks.insertAdjacentHTML("beforeend",
+      `<g transform="translate(${p.x},${p.y})">
+         <circle r="6.5" fill="#0a0612" stroke="#8878a4" stroke-width="2.4"/>
+         <text class="stagelbl" y="27" text-anchor="middle">${s.label}</text>
+         <text class="stagept" y="41" text-anchor="middle">${s.at}</text>
+       </g>`);
+  });
+  const tied = spec.tokens.length > 1 && spec.tokens[0].t === spec.tokens[1].t;
+  spec.tokens.forEach((tk,i)=>{
+    const p  = path.getPointAtLength(tk.t*L);
+    const dy = i === 0 ? -44 : 44;
+    const dx = tied ? (i === 0 ? -26 : 26) : 0;
+    toks.insertAdjacentHTML("beforeend",
+      `<line x1="${p.x}" y1="${p.y}" x2="${p.x+dx}" y2="${p.y+dy+(dy<0?21:-21)}"
+         stroke="${tk.color}" stroke-width="1.6" opacity=".45" stroke-dasharray="3 3"/>
+       <g transform="translate(${p.x+dx-19},${p.y+dy-19})">
+         <svg x="0" y="0" width="38" height="38" viewBox="0 0 100 100">
+           ${FACES[tk.face](tk.color, "c"+tk.id)}
+         </svg>
+       </g>`);
+  });
+}
+
+function render(){
+  const start = new Date(DATA.season.startDate+"T00:00:00");
+  const end   = new Date(DATA.season.endDate+"T00:00:00");
+  const now   = new Date(iso(new Date())+"T00:00:00");
+  const total = Math.round((end-start)/DAY) + 1;
+  const live  = now >= start;
+  const idx   = Math.floor((now-start)/DAY);
+  const dayNo = live ? Math.min(total, idx+1) : 0;
+  const left  = live ? Math.max(0, total-dayNo) : total;
+
+  const by = tally();
+  const ranked = Object.values(by).sort((a,b)=>b.points-a.points);
+  const gap = ranked[0].points - ranked[1].points;
+  const scored = ranked.some(p=>p.points>0);
+
+  const header = live
+    ? `${DATA.season.platform} &nbsp;·&nbsp; Day ${dayNo} of ${total} &nbsp;·&nbsp; ${left} left`
+    : `${DATA.season.platform} &nbsp;·&nbsp; ${pretty(DATA.season.startDate)} to ${pretty(DATA.season.endDate)} &nbsp;·&nbsp; ${total} days`;
+
+  const fighters = DATA.players.map(p=>{
+    const net = p.followersNow - p.followersStart;
+    const pct = p.followersStart ? Math.round(net/p.followersStart*1000)/10 : 0;
+    return `<div class="fighter">
+      ${FACES[p.face](p.color,"f"+p.id)}
+      <div class="fname" style="color:${p.color}">${p.name}</div>
+      <div class="fhandle">${p.handle}</div>
+      <div class="fstat"><b>${p.followersNow.toLocaleString()}</b>
+        followers now &nbsp;<span style="color:${net>0?p.color:'var(--faint)'}">
+        ${net>=0?"+":""}${net} (${pct>=0?"+":""}${pct}%)</span>
+        <div style="font-size:13px;margin-top:3px;color:var(--faint)">
+          started at ${p.followersStart.toLocaleString()}</div></div>
+    </div>`;
+  });
+
+  const rows = ranked.map(P=>{
+    const st = streakOf(P, start, idx, live);
+    return `<div class="row" style="--c:${P.color}">
+      <div class="who">${FACES[P.face](P.color,"r"+P.id)}
+        <div><div class="nm">${P.name}</div><div class="hd">${P.handle}</div></div></div>
+      <div class="nums">
+        <div class="num"><b class="${P.points?"":"zero"}">${P.points}</b><span>points</span></div>
+        <div class="num"><b class="${P.days.size?"":"zero"}">${P.days.size}</b><span>days posted</span></div>
+        <div class="num"><b class="${st?"":"zero"}">${st}</b><span>streak</span></div>
+      </div></div>`;
+  }).join("");
+
+  const lead = !live ? ""
+    : !scored ? "Still nothing on the board."
+    : gap === 0 ? "<b>Dead even.</b>"
+    : `<b>${ranked[0].name}</b> by <b>${gap}</b>`;
+
+  const logRows = [...DATA.log].reverse().map(e=>{
+    const P = by[e.player];
+    return `<tr><td class="muted" style="white-space:nowrap">${pretty(e.date)}</td>
+      <td style="color:${P.color};font-weight:700">${P.name}</td>
+      <td>${e.type}</td>
+      <td class="muted">${e.note||""}</td>
+      <td><a href="${e.url}" target="_blank" rel="noopener">link</a></td>
+      <td class="n">+${DATA.rubric[e.type] ?? 0}</td></tr>`;
+  }).join("");
+
+  const ACTLABEL = { reply:"Reply to this", quote:"Quote post this", post:"Post about this" };
+  const ideas = (DATA.queue || []).filter(q => !q.done).map(q=>{
+    const opens = new Date(q.fedAt).getTime() + 24*3600*1000;
+    const msLeft = opens - Date.now();
+    const hrs = Math.floor(msLeft/3600000);
+    const mins = Math.floor((msLeft%3600000)/60000);
+    const clock = msLeft > 0
+      ? `<span class="clock live">${hrs}h ${mins}m</span>`
+      : `<span class="clock gone">Ian can take this</span>`;
+    const btn = q.sourceUrl
+      ? `<a class="open" href="${q.sourceUrl}" target="_blank" rel="noopener">Open it</a>`
+      : `<span class="open dead">Link needed</span>`;
+    return `<div class="idea">
+      <div class="ihead">
+        <span class="act act-${q.action}">${ACTLABEL[q.action] || q.action}</span>
+        <span class="isrc">${q.sourceLabel}</span>
+        ${clock}
+      </div>
+      <p class="iquote">${q.quote}</p>
+      ${q.pick ? `<p class="ipick">${q.pick}</p>` : ""}
+      <div class="ilab">Suggested</div>
+      <ul>${q.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
+      ${btn}
+    </div>`;
+  }).join("");
+
+  const spec = course(by);
+
+  document.getElementById("app").innerHTML = `
+    <h1>${DATA.season.name}</h1>
+    <div class="sub">${header}</div>
+    <div class="stake">${DATA.season.stake}</div>
+
+    <div class="panel">
+      <h2>The matchup</h2>
+      <div class="vs">${fighters[0]}<div class="vsmark">VS</div>${fighters[1]}</div>
+    </div>
+
+    <div class="panel" id="course">
+      <h2>The course</h2>
+      <svg class="course" viewBox="0 0 1000 260">
+        <defs>
+          <linearGradient id="pg" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#41e3c8"/><stop offset=".5" stop-color="#ffc061"/>
+            <stop offset="1" stop-color="#ff6fae"/>
+          </linearGradient>
+        </defs>
+        <path id="track" d="${spec.d}" fill="none" stroke="url(#pg)" stroke-width="3.4"
+          stroke-linecap="round" opacity=".6" stroke-dasharray="1.5 10"/>
+        <g id="marks"></g><g id="tokens"></g>
+      </svg>
+    </div>
+
+    <div class="panel">
+      <h2>Standings</h2>
+      ${rows}${lead ? `<div class="lead">${lead}</div>` : ""}
+    </div>
+
+    <div class="grid2">
+      <div class="panel">
+        <h2>What scores</h2>
+        <table><tbody>
+          <tr><td><b>Post</b><br><span class="muted" style="font-size:14px">
+            Your own post.</span></td>
+            <td class="n">${DATA.rubric.post}</td></tr>
+          <tr><td><b>Reply</b><br><span class="muted" style="font-size:14px">
+            A reply to someone else's post.</span></td>
+            <td class="n">${DATA.rubric.reply}</td></tr>
+          <tr><td><b>Quote post</b><br><span class="muted" style="font-size:14px">
+            Reposting someone with your own words on top.</span></td>
+            <td class="n">${DATA.rubric.quote}</td></tr>
+          <tr><td><b>Follower gained</b><br><span class="muted" style="font-size:14px">
+            Net, measured against your day one count.</span></td>
+            <td class="n">${DATA.results.perFollower}</td></tr>
+          <tr><td><b>Likes received</b><br><span class="muted" style="font-size:14px">
+            Every ${DATA.results.likesPerPoint} likes on your stuff.</span></td>
+            <td class="n">1</td></tr>
+        </tbody></table>
+        <p class="muted" style="font-size:14px;margin:16px 0 0">
+          Followers are uncapped. Likes are capped at ${DATA.results.likeCapPerPost} points
+          per post, so one banger cannot buy the win.</p>
+      </div>
+
+      <div class="panel">
+        <h2>The rulings</h2>
+        <ul class="rules">
+          <li><b>A thread is one post.</b></li>
+          <li><b>Ian sends Dylan things worth posting about.</b> Dylan gets 24 hours to use
+            it. After that Ian can steal it and post it himself.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h2>Ready to post</h2>
+      ${ideas || `<div class="empty">Queue is clear. Ian drops the next one in here.</div>`}
+    </div>
+
+    <div class="panel">
+      <h2>The log</h2>
+      ${logRows
+        ? `<table><thead><tr><th>Date</th><th>Who</th><th>Type</th><th>Note</th>
+             <th>Link</th><th style="text-align:right">Pts</th></tr></thead>
+           <tbody>${logRows}</tbody></table>`
+        : `<div class="empty">Empty. First post goes up ${pretty(DATA.season.startDate)}.</div>`}
+    </div>
+
+    <footer>Bullets are AI written. What lands in the queue is picked by Ian.<br>
+      Updated daily off both public profiles.</footer>`;
+
+  paintCourse(spec);
+}
+function fail(headline, detail){
+  document.getElementById("app").innerHTML =
+    '<h1>ROAD TO THE BURN</h1>' +
+    '<div class="sub">Board not loaded</div>' +
+    '<div class="panel"><h2>Something is off with data.json</h2>' +
+    '<p class="empty">' + headline + '</p>' +
+    (detail ? '<p class="empty" style="font-size:14px">' + detail + '</p>' : '') +
+    '</div>';
+}
+
+async function boot(){
+  if (location.protocol === "file:") {
+    fail("This page is open straight off your hard drive, so the browser will not let it read data.json.",
+         "Put both files on a web host, or run a local server from the folder: python3 -m http.server");
+    return;
+  }
+  try {
+    const res = await fetch(DATA_URL + "?v=" + Date.now(), { cache: "no-store" });
+    if (!res.ok) throw new Error("Server said " + res.status);
+    DATA = await res.json();
+  } catch (err) {
+    fail("Could not read data.json.",
+         "Check it sits in the same folder as this page and that the JSON is valid. A trailing comma after the last item in a list is the usual culprit. (" + err.message + ")");
+    return;
+  }
+  try {
+    if (DATA.season && DATA.season.name) document.title = DATA.season.name;
+    render();
+  } catch (err) {
+    fail("The board loaded but could not be drawn.",
+         "Usually a typo in data.json: a player id in the log that does not match the players list, or a type that is not post, reply, or quote. (" + err.message + ")");
+  }
+}
+boot();
+</script>
+</body>
+</html>

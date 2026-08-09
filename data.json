@@ -1,0 +1,216 @@
+{
+  "_readme": [
+    "This file is the whole scoreboard. Edit it, save, and the published page shows the new numbers on refresh.",
+    "Anything starting with an underscore is a note to you and is ignored by the page.",
+    "LOG ENTRY SHAPE: { \"date\": \"2026-08-11\", \"player\": \"dylan\", \"type\": \"post\", \"url\": \"https://x.com/...\", \"likes\": 0, \"note\": \"\" }",
+    "type must be one of: post, reply, quote. player must match a player id below.",
+    "likes is that single post current like count. Update it when you update follower counts.",
+    "QUEUE: fedAt starts the 24 hour clock. Add \"done\": true to an item to drop it off the board.",
+    "FOLLOWERS: only change followersNow. Leave followersStart alone or the math breaks.",
+    "JSON rules: double quotes on everything, no trailing comma after the last item in a list."
+  ],
+  "season": {
+    "name": "ROAD TO THE BURN",
+    "startDate": "2026-08-10",
+    "endDate": "2026-08-28",
+    "platform": "X only",
+    "stake": "If Dylan loses, he shouts out Ian's account and tells them about this contest."
+  },
+  "rubric": {
+    "post": 20,
+    "reply": 10,
+    "quote": 10
+  },
+  "results": {
+    "perFollower": 5,
+    "likesPerPoint": 4,
+    "likeCapPerPost": 100
+  },
+  "checkpoints": [
+    {
+      "at": 0,
+      "label": "GATES"
+    },
+    {
+      "at": 150,
+      "label": "SIDE STAGE"
+    },
+    {
+      "at": 350,
+      "label": "THE DEEP END"
+    },
+    {
+      "at": 600,
+      "label": "SUNRISE SET"
+    },
+    {
+      "at": 900,
+      "label": "MAIN STAGE"
+    },
+    {
+      "at": 1300,
+      "label": "THE BURN"
+    }
+  ],
+  "players": [
+    {
+      "id": "dylan",
+      "name": "Dylan",
+      "handle": "@dylanbeynon",
+      "color": "#ff6fae",
+      "face": "dylan",
+      "followersStart": 1190,
+      "followersNow": 1190
+    },
+    {
+      "id": "ian",
+      "name": "Ian",
+      "handle": "@IanReardon65734",
+      "color": "#41e3c8",
+      "face": "ian",
+      "followersStart": 28,
+      "followersNow": 28
+    }
+  ],
+  "log": [],
+  "queue": [
+    {
+      "fedAt": "2026-08-10T00:00",
+      "action": "post",
+      "sourceUrl": "https://www.tricycleday.com/p/dylan-beynon",
+      "sourceLabel": "The Tricycle Day interview",
+      "quote": "Your Psychonaut POV interview with Henry Winslow at Tricycle Day.",
+      "bullets": [
+        "I used to think ketamine was for horses. We're now closing in on our millionth session, delivered in people's living rooms.",
+        "New interview with Tricycle Day on the three questions I get most: whether at-home use is safe, what happens if the DEA waiver goes away, and what comes after ketamine.",
+        "Alt hook if you want the spicier open: I think of psychedelic medicines as the GLP-1s of mental health. Obesity climbed for decades, then the curve turned. Depression and anxiety are still going up and to the right.",
+        "Link at the end."
+      ]
+    },
+    {
+      "fedAt": "2026-08-10T00:00",
+      "action": "post",
+      "sourceUrl": "http://www.clearmindmedicine.com/news-release/clearmind-medicine-signs-letter-of-intent-to-acquire-51-majority-stake-in-ev-wireless-charging-solutions-for-automated-parking-systems-company",
+      "sourceLabel": "Clearmind is buying an EV charging company",
+      "quote": "Clearmind Medicine, which is developing an MDMA-like treatment for alcohol use disorder, signed a non-binding letter of intent to buy 51% of an unnamed electric-vehicle wireless charging company for $2.5M plus a $1.5M loan, and gave no reason why.",
+      "bullets": [
+        "At Mindbloom, I'd like to announce that we're about to acquire [whatever you think is funny]",
+        "Drop the press release link underneath"
+      ]
+    },
+    {
+      "fedAt": "2026-08-10T00:00",
+      "action": "reply",
+      "sourceUrl": "https://x.com/josh__hardman/status/2085798735762596054",
+      "sourceLabel": "Josh Hardman on the FDA psychedelics hearing",
+      "quote": "To anyone that needs to hear it: You don't need to present at the FDA psychedelics public hearing",
+      "bullets": [
+        "I'm just going to ignore this."
+      ]
+    },
+    {
+      "fedAt": "2026-08-10T00:00",
+      "action": "reply",
+      "sourceUrl": "https://x.com/JackGorsline/status/2085749845952725079",
+      "sourceLabel": "Jack Gorsline on Paul Austin selling LSD online",
+      "quote": "Blatantly selling LSD online isn't exactly helping you curb the federal informant rumors, Paul",
+      "bullets": [
+        "This gives me flashbacks to a little something called Project MKUltra."
+      ]
+    },
+    {
+      "fedAt": "2026-08-10T00:00",
+      "action": "reply",
+      "sourceUrl": "https://x.com/PaulAustin3w/status/2085737474639442366",
+      "sourceLabel": "Paul Austin promoting his LSD affiliate code",
+      "quote": "Pictured is the only easily available microdosing LSD product out there today. It comes from Golden Rule and ships to all 50 states. It's wild that this is now widely available.",
+      "bullets": [
+        "I'm all for making psychedelic medicines accessible. That does not mean selling them online without the right screening, preparation, and integration. Paul, you have to do better than this.",
+        "Remember \"just say no\" to drugs. Unless you have the right set and setting :)"
+      ]
+    },
+    {
+      "fedAt": "2026-08-10T00:00",
+      "action": "post",
+      "sourceUrl": "https://www.frontiersin.org/journals/human-neuroscience/articles/10.3389/fnhum.2026.1874178/full",
+      "sourceLabel": "Psilocybin prep study in Frontiers",
+      "quote": "105 people took psilocybin. In the full dose group the only difference was 20 minutes beforehand: compassion practice versus breath focus.",
+      "bullets": [
+        "Set and setting is so real.",
+        "105 people took psilocybin. In the full-dose group, the only difference was 20 minutes beforehand: compassion practice vs. breath focus.",
+        "The trip felt identical to both.",
+        "Six months later, only the compassion group changed. The breathing group never did.",
+        "20 minutes of prep. Six months of difference.",
+        "The prep matters as much as the medicine. It's why we obsess over it at Mindbloom."
+      ]
+    },
+    {
+      "fedAt": "2026-08-10T00:00",
+      "action": "reply",
+      "sourceUrl": "https://x.com/psychedvantage/status/2077637828683419976",
+      "sourceLabel": "Psychedelic Advantage on the Lilly deal",
+      "quote": "Lilly acquired AtaiBeckley for $2.8B.",
+      "bullets": [
+        "This spring Eli Lilly's CEO said there'd been no real step up in mental health since ketamine.",
+        "He just put $2.8B behind fixing that by acquiring AtaiBeckley.",
+        "Respect a man who backs conviction with capital."
+      ]
+    },
+    {
+      "fedAt": "2026-08-10T00:00",
+      "action": "reply",
+      "sourceUrl": "https://x.com/psyched_alpha/status/2079601390943387940",
+      "sourceLabel": "Psyched Alpha's Q3 pipeline tracker",
+      "quote": "Q3 psychedelic pipeline tracker just dropped.",
+      "bullets": [
+        "Q3 psychedelic pipeline tracker just dropped. Gorgeous chart. Now where's the delivery tracker?"
+      ]
+    },
+    {
+      "fedAt": "2026-08-10T00:00",
+      "action": "reply",
+      "sourceUrl": "https://x.com/rcarhartharris/status/2079206861148950842",
+      "sourceLabel": "Robin Carhart-Harris announcing his new book",
+      "quote": "Carhart-Harris posted about his new book.",
+      "bullets": [
+        "Can I put in a group order? Making @RCarhartHarris's new book mandatory reading for every Mindbloom employee."
+      ]
+    },
+    {
+      "fedAt": "2026-08-10T00:00",
+      "action": "post",
+      "sourceUrl": "https://psychedelicalpha.com/news/backed-by-11m-nida-grant-harvard-moves-forward-on-ibogaine-for-opioid-use-disorder-research/",
+      "sourceLabel": "Harvard's $11M NIDA ibogaine grant",
+      "quote": "Harvard got an $11M NIDA grant to study ibogaine for opioid addiction.",
+      "bullets": [
+        "Harvard just got an $11M NIDA grant to study ibogaine for opioid addiction.",
+        "Right now Americans fly to Mexico and pay over $12k out of pocket for it.",
+        "A Schedule I drug with the power to save lives. This needs to change ASAP."
+      ]
+    },
+    {
+      "fedAt": "2026-08-10T00:00",
+      "action": "post",
+      "sourceUrl": "https://investor.lilly.com/news-releases/news-release-details/lilly-acquire-ataibeckley-advance-therapies-treatment-resistant",
+      "sourceLabel": "Atai sold to Lilly for $3.8B",
+      "quote": "Goal is a repost from Christian Angermayer.",
+      "bullets": [
+        "10 years ago, psychedelics needed an evangelist. @C_Angermayer delivered. $ATAI sold to Lilly for $3.8B.",
+        "BPL-003 (5-MeO-DMT for TRD) is entering Phase 3. Still ahead: rescheduling and FDA approval. When it clears, we're ready to put it in the right hands and get the best outcomes."
+      ]
+    },
+    {
+      "fedAt": "2026-08-10T00:00",
+      "action": "post",
+      "sourceUrl": "https://preprints.jmir.org/preprint/92647/accepted",
+      "sourceLabel": "The SQ study",
+      "quote": "First large-scale study of at-home injectable ketamine. Depression scores cut in half.",
+      "bullets": [
+        "The evidence base for psychedelic therapy keeps getting stronger!",
+        "We just published the first large-scale study ever of at-home injectable ketamine. Depression scores cut in half. 8 in 10 saw clinically meaningful improvement across depression, anxiety, and PTSD.",
+        "For years the psychedelic medicine community has argued these treatments can be positively life-changing.",
+        "Soon it's going to be undeniable."
+      ]
+    }
+  ]
+}
