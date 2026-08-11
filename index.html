@@ -293,10 +293,7 @@ function render(){
       </div></div>`;
   }).join("");
 
-  const lead = !live ? ""
-    : !scored ? "Still nothing on the board."
-    : gap === 0 ? "<b>Dead even.</b>"
-    : `<b>${ranked[0].name}</b> by <b>${gap}</b>`;
+  const lead = "";
 
   const logRows = [...DATA.log].reverse().map(e=>{
     const P = by[e.player];
@@ -314,7 +311,9 @@ function render(){
     const msLeft = opens - Date.now();
     const hrs = Math.floor(msLeft/3600000);
     const mins = Math.floor((msLeft%3600000)/60000);
-    const clock = msLeft > 0
+    const clock = q.stolen
+      ? `<span class="clock gone">Stolen</span>`
+      : msLeft > 0
       ? `<span class="clock live">${hrs}h ${mins}m</span>`
       : `<span class="clock gone">Ian can take this</span>`;
     const btn = q.sourceUrl

@@ -113,7 +113,8 @@
       "bullets": [
         "At Mindbloom, I'd like to announce that we're about to acquire [whatever you think is funny]",
         "Drop the press release link underneath"
-      ]
+      ],
+      "stolen": true
     },
     {
       "fedAt": "2026-08-10T00:00",
@@ -191,7 +192,8 @@
       "quote": "Carhart-Harris posted about his new book.",
       "bullets": [
         "Can I put in a group order? Making @RCarhartHarris's new book mandatory reading for every Mindbloom employee."
-      ]
+      ],
+      "done": true
     },
     {
       "fedAt": "2026-08-10T00:00",
@@ -227,6 +229,38 @@
         "We just published the first large-scale study ever of at-home injectable ketamine. Depression scores cut in half. 8 in 10 saw clinically meaningful improvement across depression, anxiety, and PTSD.",
         "For years the psychedelic medicine community has argued these treatments can be positively life-changing.",
         "Soon it's going to be undeniable."
+      ]
+    },
+    {
+      "fedAt": "2026-08-11T11:51",
+      "action": "reply",
+      "sourceUrl": "https://x.com/josh__hardman/status/2086891566468051188",
+      "sourceLabel": "Josh Hardman on the MDMA resubmission",
+      "quote": "Hardman posts a shrug emoji over a GlobeNewswire release: MAPS responds to a report that the MDMA-assisted therapy NDA has been resubmitted to the FDA.",
+      "bullets": [
+        "The resubmission is the whole story. Two years of hearing the science wasn't ready, and the science didn't change.",
+        "Veterans have been waiting since 2024. Every month of delay has a body count."
+      ]
+    },
+    {
+      "fedAt": "2026-08-11T11:51",
+      "action": "reply",
+      "sourceUrl": "https://x.com/rcarhartharris/status/2087109708616237331",
+      "sourceLabel": "Carhart-Harris on well-being as a trial endpoint",
+      "quote": "He shares a Nature paper calling for consensus on well-being as a primary endpoint, and adds that WHO-5 and WEMWBS are already good enough. People just need to be brave enough to use them as primaries.",
+      "bullets": [
+        "Depression scores measure the absence of something. Nobody goes through this to score lower on a questionnaire.",
+        "We ask clients how their life is going. That answer predicts whether they stay better."
+      ]
+    },
+    {
+      "fedAt": "2026-08-11T11:51",
+      "action": "quote",
+      "sourceUrl": "https://x.com/rcarhartharris/status/2087166583256793448",
+      "sourceLabel": "Carhart-Harris on his book pre-orders",
+      "quote": "He says the book needs more than 1,000 pre-orders to be competitive for bestseller status, and is at 451 so far.",
+      "bullets": [
+        "Pre-ordered. Anyone who works at Mindbloom and sees this, I'll buy you a copy."
       ]
     }
   ]
