@@ -72,7 +72,24 @@
       "followersNow": 28
     }
   ],
-  "log": [],
+  "log": [
+    {
+      "date": "2026-08-10",
+      "player": "ian",
+      "type": "post",
+      "url": "",
+      "likes": 0,
+      "note": "Clearmind LOI to buy 51% of an EV wireless charging company"
+    },
+    {
+      "date": "2026-08-10",
+      "player": "ian",
+      "type": "post",
+      "url": "",
+      "likes": 0,
+      "note": "Festival wastewater study, 104x MDMA spike at EDM events"
+    }
+  ],
   "queue": [
     {
       "fedAt": "2026-08-10T00:00",
