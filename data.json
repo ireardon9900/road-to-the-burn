@@ -139,7 +139,7 @@
       "action": "reply",
       "sourceUrl": "https://x.com/JackGorsline/status/2085749845952725079",
       "sourceLabel": "Jack Gorsline on Paul Austin selling LSD online",
-      "quote": "Blatantly selling LSD online isn't exactly helping you curb the federal informant rumors, Paul",
+      "quote": "Gorsline: \"Blatantly selling LSD online isn't exactly helping you curb the federal informant rumors, Paul\" - responding to Paul Austin promoting an affiliate code for a microdosing LSD product that ships to all 50 states.",
       "bullets": [
         "This gives me flashbacks to a little something called Project MKUltra."
       ]
@@ -153,7 +153,9 @@
       "bullets": [
         "I'm all for making psychedelic medicines accessible. That does not mean selling them online without the right screening, preparation, and integration. Paul, you have to do better than this.",
         "Remember \"just say no\" to drugs. Unless you have the right set and setting :)"
-      ]
+      ],
+      "done": true,
+      "note": "Duplicate topic - folded into the Gorsline reply item"
     },
     {
       "fedAt": "2026-08-10T00:00",
@@ -180,7 +182,9 @@
         "This spring Eli Lilly's CEO said there'd been no real step up in mental health since ketamine.",
         "He just put $2.8B behind fixing that by acquiring AtaiBeckley.",
         "Respect a man who backs conviction with capital."
-      ]
+      ],
+      "done": true,
+      "note": "Duplicate topic - folded into the Lilly/atai press release item"
     },
     {
       "fedAt": "2026-08-10T00:00",
@@ -219,11 +223,11 @@
       "fedAt": "2026-08-10T00:00",
       "action": "post",
       "sourceUrl": "https://investor.lilly.com/news-releases/news-release-details/lilly-acquire-ataibeckley-advance-therapies-treatment-resistant",
-      "sourceLabel": "Atai sold to Lilly for $3.8B",
-      "quote": "Goal is a repost from Christian Angermayer.",
+      "sourceLabel": "Lilly acquiring atai Beckley",
+      "quote": "Lilly is acquiring atai Beckley for $6.75 per share in cash, an aggregate equity value of about $2.8 billion upfront, plus up to $2.50 per share in contingent value rights worth about $1.0 billion more if BPL-003 and VLS-01 hit development, approval and DEA rescheduling milestones. Lilly's release does not state a combined total and says the CVR payments are not assured.",
       "bullets": [
-        "10 years ago, psychedelics needed an evangelist. @C_Angermayer delivered. $ATAI sold to Lilly for $3.8B.",
-        "BPL-003 (5-MeO-DMT for TRD) is entering Phase 3. Still ahead: rescheduling and FDA approval. When it clears, we're ready to put it in the right hands and get the best outcomes."
+        "Big pharma just paid $2.8B upfront for two psychedelic assets. The debate about whether this is real medicine is over.",
+        "Read the fine print on the Lilly deal. $2.8B is the cash. The rest is milestones on approval and DEA rescheduling, and rescheduling is the hard part."
       ]
     },
     {
@@ -269,6 +273,39 @@
       "quote": "He says the book needs more than 1,000 pre-orders to be competitive for bestseller status, and is at 451 so far.",
       "bullets": [
         "Pre-ordered. Anyone who works at Mindbloom and sees this, I'll buy you a copy."
+      ]
+    },
+    {
+      "fedAt": "2026-08-12T10:35",
+      "action": "reply",
+      "sourceUrl": "https://x.com/josh__hardman/status/2087369729249808866",
+      "sourceLabel": "Josh Hardman on how bad Spravato tastes",
+      "quote": "\"Apparently Spravato tastes bad\" - quoting a patient: \"Bitter and disgusting but better than depression.\"",
+      "bullets": [
+        "\"Bitter and disgusting but better than depression\" is the most honest patient quote in this whole field.",
+        "Nobody chooses this treatment because it is pleasant. They choose it because the alternative is worse. That is the bar we are clearing."
+      ]
+    },
+    {
+      "fedAt": "2026-08-12T10:35",
+      "action": "reply",
+      "sourceUrl": "https://x.com/bellevuedoc/status/2086605429899989475",
+      "sourceLabel": "Julie Holland on psilocybin during cancer treatment",
+      "quote": "She posts a paper: \"Safety and Efficacy of Psilocybin During Anticancer Treatment: A Phase II Trial Secondary Analysis.\" Holland posts the title and link without commentary.",
+      "bullets": [
+        "Psilocybin given during active cancer treatment, not after. The safety envelope keeps widening.",
+        "The patients who need this most are the ones trials usually exclude. Good to see that changing."
+      ]
+    },
+    {
+      "fedAt": "2026-08-12T10:35",
+      "action": "post",
+      "sourceUrl": "https://ir.definiumtx.com/news-events/press-releases/detail/243/definium-therapeutics-announces-positive-topline-results-from-phase-3-voyage-study-of-dt120-odt-in-generalized-anxiety-disorder",
+      "sourceLabel": "Definium Phase 3 results in generalized anxiety",
+      "quote": "Definium Therapeutics announced positive topline results from its Phase 3 Voyage study of DT120 ODT in generalized anxiety disorder. Posted by Psychedelic Vantage twice, once with the study readout PDF and once with the press release.",
+      "bullets": [
+        "A Phase 3 readout in generalized anxiety. Anxiety has been the neglected half of this field for years.",
+        "Positive Phase 3 topline in GAD. Worth watching what the effect size actually looks like when the full data lands."
       ]
     }
   ]
